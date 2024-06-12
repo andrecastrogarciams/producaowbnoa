@@ -14,27 +14,35 @@
             margin: 0;
             background-color: #f0f0f0;
         }
+        #iframe-container {
+            width: 100%;
+            height: 100%;
+        }
         iframe {
+            width: 100%;
+            height: 100%;
             border: 0;
         }
     </style>
 </head>
 <body>
-    <iframe title="Produção WB Diária" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=663fbdb8-ac53-49b6-bea0-7eb347676099&autoAuth=true&ctid=d213bbc1-5413-4aea-b993-ae66a45f5264" allowFullScreen="true"></iframe>
+    <div id="iframe-container">
+        <iframe title="Produção WB Diária" src="https://app.powerbi.com/reportEmbed?reportId=663fbdb8-ac53-49b6-bea0-7eb347676099&autoAuth=true&ctid=d213bbc1-5413-4aea-b993-ae66a45f5264" allowFullScreen="true"></iframe>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             function requestFullScreen() {
-                var docEl = document.documentElement;
-                if (docEl.requestFullscreen) {
-                    docEl.requestFullscreen().catch(err => {
+                var container = document.getElementById('iframe-container');
+                if (container.requestFullscreen) {
+                    container.requestFullscreen().catch(err => {
                         console.error(`Erro ao tentar entrar em tela cheia: ${err.message} (${err.name})`);
                     });
-                } else if (docEl.mozRequestFullScreen) { // Firefox
-                    docEl.mozRequestFullScreen();
-                } else if (docEl.webkitRequestFullscreen) { // Chrome, Safari e Silk
-                    docEl.webkitRequestFullscreen();
-                } else if (docEl.msRequestFullscreen) { // IE/Edge
-                    docEl.msRequestFullscreen();
+                } else if (container.mozRequestFullScreen) { // Firefox
+                    container.mozRequestFullScreen();
+                } else if (container.webkitRequestFullscreen) { // Chrome, Safari e Silk
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) { // IE/Edge
+                    container.msRequestFullscreen();
                 }
             }
 
